@@ -1,0 +1,100 @@
+/* Edit Mode Toggle - iOS-style Switch */
+
+.container {
+  display: inline-flex;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  position: relative;
+}
+
+.toggle:focus-visible .track {
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2);
+}
+
+/* Toggle Track (the pill-shaped background) */
+.track {
+  position: relative;
+  width: 52px;
+  height: 32px;
+  background-color: var(--color-surface-secondary);
+  border: 2px solid var(--color-separator);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+}
+
+.trackActive {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Toggle Thumb (the sliding circle) */
+.thumb {
+  position: absolute;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.thumbActive {
+  transform: translateX(20px);
+}
+
+.thumbIcon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Label */
+.label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Hover state */
+.toggle:hover .track {
+  border-color: var(--color-primary);
+}
+
+.toggle:hover .trackActive {
+  background-color: #0051D5;
+  border-color: #0051D5;
+}
+
+/* Active state (pressed) */
+.toggle:active .thumb {
+  width: 30px;
+}
+
+.toggle:active .thumbActive {
+  transform: translateX(16px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .label {
+    display: none;
+  }
+}

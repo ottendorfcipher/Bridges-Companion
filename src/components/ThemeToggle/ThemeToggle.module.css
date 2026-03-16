@@ -1,0 +1,57 @@
+/* Theme Toggle Component */
+
+.toggle {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle:hover {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.toggle:active {
+  background: var(--color-surface-secondary);
+  transform: scale(0.95);
+}
+
+/* Inline variant (with label) */
+.inlineToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md);
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast);
+  color: var(--color-text-primary);
+  font-size: 17px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.inlineToggle:hover {
+  background: var(--color-surface);
+}
+
+.inlineToggle:active {
+  background: var(--color-surface-secondary);
+}
+
+.label {
+  flex: 1;
+}

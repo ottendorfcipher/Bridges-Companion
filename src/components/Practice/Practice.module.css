@@ -1,0 +1,104 @@
+/**
+ * Practice View Styles
+ * Active retrieval and spaced repetition interface
+ */
+
+.practice {
+  padding: var(--space-content-padding);
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+  padding-bottom: calc(var(--space-tab-height) + env(safe-area-inset-bottom) + var(--space-xl));
+}
+
+/* Header */
+.header {
+  margin-bottom: var(--space-xl);
+}
+
+.header h1 {
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+/* Stats Display */
+.stats {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-md);
+}
+
+.statItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Cards Grid */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xxl) var(--space-lg);
+  min-height: 60vh;
+}
+
+.emptyIcon {
+  font-size: 64px;
+  margin-bottom: var(--space-lg);
+  opacity: 0.7;
+}
+
+.emptyState h2 {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.emptyState p {
+  color: var(--color-text-secondary);
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .practice {
+    padding: var(--space-xl);
+  }
+  
+  .cards {
+    gap: var(--space-xl);
+  }
+}

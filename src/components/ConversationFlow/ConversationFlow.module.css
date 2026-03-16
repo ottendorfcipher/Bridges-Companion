@@ -1,0 +1,197 @@
+/**
+ * ConversationFlow Styles
+ * Vertical stepped process for Type D (Conversation Guide) pages
+ */
+
+.conversationFlow {
+  width: 100%;
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+}
+
+/* Quick Summary Box - Grey background anchor */
+.quickSummary {
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.summaryTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.summaryText {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Steps Container */
+.stepsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Individual Step */
+.step {
+  display: flex;
+  gap: var(--space-md);
+  position: relative;
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.step.focused {
+  opacity: 1;
+}
+
+/* When one is focused, dim others */
+.step:not(.focused) {
+  opacity: 0.6;
+}
+
+/* If no step is focused, all should be full opacity */
+.stepsContainer:not(:has(.focused)) .step {
+  opacity: 1;
+}
+
+/* Progress Line and Node */
+.progressLine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.progressNode {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  box-shadow: var(--shadow-sm);
+  z-index: 1;
+}
+
+.stepNumber {
+  line-height: 1;
+}
+
+.connector {
+  width: 2px;
+  flex: 1;
+  min-height: 60px;
+  background-color: var(--color-separator);
+  margin-top: var(--space-sm);
+}
+
+/* Step Content */
+.stepContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sectionHeading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+/* Quote Bubble - "What you hear" */
+.quoteBubble {
+  background-color: var(--color-primary-bg);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+}
+
+.quoteBubble p {
+  margin: 0;
+  font-style: italic;
+  color: var(--color-text-primary);
+}
+
+/* Text Block - "What they mean" */
+.textBlock {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+}
+
+.textBlock p {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+/* Action Block - "How to respond" */
+.actionBlock {
+  background-color: var(--color-accent-bg);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+}
+
+.actionBlock p {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* Dark mode adjustments */
+html.dark-theme .quickSummary {
+  background-color: var(--color-surface);
+}
+
+html.dark-theme .quoteBubble {
+  background-color: rgba(91, 156, 214, 0.15);
+  border-left-color: var(--color-primary);
+}
+
+html.dark-theme .textBlock {
+  background-color: var(--color-surface-elevated);
+}
+
+html.dark-theme .actionBlock {
+  background-color: rgba(217, 133, 112, 0.15);
+  border-left-color: var(--color-accent);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .progressNode {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  
+  .connector {
+    width: 3px;
+  }
+}

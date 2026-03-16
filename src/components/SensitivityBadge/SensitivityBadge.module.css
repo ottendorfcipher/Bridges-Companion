@@ -1,0 +1,103 @@
+/**
+ * SensitivityBadge Styles - Layer 1 Core Changes
+ * Color-coded contextual relevance indicators
+ * Based on Yerkes-Dodson Law (Eustress) - Cognitive Load Theory
+ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-meta); /* 13pt Footnote */
+  font-weight: 500;
+  border: 1.5px solid transparent;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+/* Optional border styling for when used as page border indicator */
+.badge.bordered {
+  border-width: 2px;
+  padding: 6px 12px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.label {
+  line-height: 1;
+}
+
+/* Layer 1 Sensitivity Colors - core_changes_ui_12_28_25.pdf */
+
+/* Low Sensitivity - Teal #30B0C7 (Invites open dialogue) */
+.badge.low {
+  background-color: var(--color-sensitivity-low-bg);
+  border-color: var(--color-sensitivity-low);
+  color: var(--color-sensitivity-low);
+}
+
+.badge.low .indicator {
+  background-color: var(--color-sensitivity-low);
+}
+
+/* Medium Sensitivity - Orange #FF9500 (Requires nuance) */
+.badge.medium {
+  background-color: var(--color-sensitivity-medium-bg);
+  border-color: var(--color-sensitivity-medium);
+  color: var(--color-sensitivity-medium);
+}
+
+.badge.medium .indicator {
+  background-color: var(--color-sensitivity-medium);
+}
+
+/* High Sensitivity - Purple #AF52DE (Deep theological divergence) */
+/* Note: Red (danger) avoided per Layer 1 guidelines */
+.badge.high {
+  background-color: var(--color-sensitivity-high-bg);
+  border-color: var(--color-sensitivity-high);
+  color: var(--color-sensitivity-high);
+}
+
+.badge.high .indicator {
+  background-color: var(--color-sensitivity-high);
+}
+
+/* Dark Mode - Mandatory per Layer 1 (Low-light ministry contexts) */
+html.dark-theme .badge.low {
+  background-color: var(--color-sensitivity-low-bg);
+  color: var(--color-sensitivity-low);
+  border-color: var(--color-sensitivity-low);
+}
+
+html.dark-theme .badge.low .indicator {
+  background-color: var(--color-sensitivity-low);
+}
+
+html.dark-theme .badge.medium {
+  background-color: var(--color-sensitivity-medium-bg);
+  color: var(--color-sensitivity-medium);
+  border-color: var(--color-sensitivity-medium);
+}
+
+html.dark-theme .badge.medium .indicator {
+  background-color: var(--color-sensitivity-medium);
+}
+
+html.dark-theme .badge.high {
+  background-color: var(--color-sensitivity-high-bg);
+  color: var(--color-sensitivity-high);
+  border-color: var(--color-sensitivity-high);
+}
+
+html.dark-theme .badge.high .indicator {
+  background-color: var(--color-sensitivity-high);
+}
+
+/* WCAG AA Compliance (4.5:1 contrast) verified */

@@ -1,0 +1,134 @@
+/**
+ * PageNavigation Styles - Layer 1
+ * Next/Previous buttons within module + Back to Module Overview
+ */
+
+.pageNavigation {
+  margin-top: var(--space-xxl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-separator);
+}
+
+/* Back to Module Overview */
+.backToModule {
+  margin-bottom: var(--space-xl);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: none;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.backButton:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+.backButton:active {
+  background-color: var(--color-surface-secondary);
+}
+
+.backIcon {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+/* Previous / Next Navigation */
+.prevNextNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+@media (max-width: 767px) {
+  .prevNextNav {
+    grid-template-columns: 1fr;
+  }
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  min-height: var(--size-button-height);
+  background: var(--color-surface);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navButton:hover {
+  background-color: var(--color-surface-elevated);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.navButton:active {
+  background-color: var(--color-surface-secondary);
+  transform: scale(0.98);
+}
+
+.navButton.previous {
+  justify-content: flex-start;
+}
+
+.navButton.next {
+  justify-content: flex-end;
+}
+
+.navIcon {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.navContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: left;
+  min-width: 0; /* Allows text truncation */
+}
+
+.navButton.next .navContent {
+  text-align: right;
+}
+
+.navLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navSpacer {
+  /* Empty spacer to maintain grid layout */
+}
+
+/* Dark mode */
+html.dark-theme .navButton:hover {
+  background-color: var(--color-surface-elevated);
+}

@@ -1,0 +1,381 @@
+/* Wrapper */
+.wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+/* Rendered HTML content styles */
+.wrapper h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.019em;
+  margin: var(--space-lg) 0 var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.wrapper h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.016em;
+  margin: var(--space-md) 0 var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.wrapper h4 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  margin: var(--space-md) 0 var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.wrapper h5 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.009em;
+  margin: var(--space-sm) 0 var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.wrapper h6 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.006em;
+  margin: var(--space-sm) 0 var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.wrapper p {
+  font-size: 17px;
+  line-height: 1.294;
+  letter-spacing: -0.003em;
+  margin: var(--space-sm) 0;
+  color: var(--color-text-primary);
+}
+
+.wrapper strong {
+  font-weight: 700;
+}
+
+.wrapper em {
+  font-style: italic;
+}
+
+.wrapper u {
+  text-decoration: underline;
+}
+
+.wrapper s {
+  text-decoration: line-through;
+}
+
+.wrapper ul,
+.wrapper ol {
+  padding-left: var(--space-xl);
+  margin: var(--space-sm) 0;
+}
+
+.wrapper li {
+  margin: var(--space-xs) 0;
+  line-height: 1.5;
+}
+
+.wrapper a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* Inline variant for accordion titles */
+.wrapper.inline {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  flex: 1;
+}
+
+/* Editable content indicator */
+.editable {
+  transition: background-color 0.2s ease;
+  padding-right: 88px; /* Space for edit + undo buttons */
+}
+
+.editable:hover {
+  background-color: rgba(0, 122, 255, 0.05);
+  border-radius: var(--radius-xs);
+}
+
+/* Button Group */
+.buttonGroup {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 4px;
+  display: flex;
+  gap: 4px;
+  z-index: 10;
+}
+
+/* Post-save Undo toast (no layout shift; appears near the acted-on content) */
+.undoToast {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  z-index: 9;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 199, 89, 0.35);
+  background: rgba(52, 199, 89, 0.12);
+  color: var(--color-text-primary);
+  backdrop-filter: blur(10px);
+}
+
+.undoToastText {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.undoToastButton {
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--color-separator);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.undoToastButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Edit Button - NN/g Best Practices:
+ * - Inline with content (not absolutely positioned far away)
+ * - Visible affordance on hover
+ * - Doesn't cause layout shift
+ * - Maintains 44x44pt touch target
+ */
+.editButton,
+.undoButton {
+  width: 36px;
+  height: 36px;
+  min-width: 44px; /* iOS touch target */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-text-tertiary);
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.editButton:disabled,
+.undoButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Show on hover or focus */
+.wrapper:hover .editButton,
+.wrapper:focus-within .editButton,
+.wrapper:hover .undoButton,
+.wrapper:focus-within .undoButton {
+  opacity: 1;
+}
+
+.editButton:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+.undoButton {
+  color: #FF9500; /* Orange for undo action */
+}
+
+.undoButton:hover:not(:disabled) {
+  background-color: #FF9500;
+  color: white;
+  border-color: #FF9500;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(255, 149, 0, 0.3);
+}
+
+.undoButton.highlight {
+  opacity: 1;
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.editButton:active:not(:disabled),
+.undoButton:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.editButton:focus,
+.undoButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+/* Editor Container */
+.editorContainer {
+  margin: var(--space-md) 0;
+}
+
+/* Basic editor fallback (when rich editor crashes on a device/browser) */
+.basicEditor {
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.basicEditorHeader {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-separator);
+  background-color: var(--color-surface-secondary);
+}
+
+.basicEditorTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.basicEditorSubtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+}
+
+.basicEditorInput,
+.basicEditorTextarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  padding: var(--space-md);
+  font-size: 16px;
+}
+
+.basicEditorTextarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.basicEditorActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-surface-secondary);
+  border-top: 1px solid var(--color-separator);
+}
+
+.basicEditorCancel,
+.basicEditorSave {
+  min-height: 44px;
+  padding: 0 var(--space-lg);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.basicEditorCancel {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-separator);
+}
+
+.basicEditorSave {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.basicEditorCancel:disabled,
+.basicEditorSave:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: rgba(255, 59, 48, 0.1);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--color-error);
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+}
+
+.errorIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Responsive - Mobile optimizations */
+@media (max-width: 768px) {
+  .editable {
+    padding-right: 96px; /* More space for button group on mobile */
+  }
+
+  .buttonGroup {
+    right: 2px;
+  }
+
+  .editButton,
+  .undoButton {
+    /* Keep inline positioning but make more visible on mobile */
+    opacity: 0.6; /* Slightly visible by default on mobile */
+    width: 40px;
+    height: 40px;
+  }
+
+  .wrapper:hover .editButton,
+  .wrapper:focus-within .editButton,
+  .wrapper:hover .undoButton,
+  .wrapper:focus-within .undoButton {
+    opacity: 1;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .editButton,
+  .undoButton {
+    font-size: 16px;
+  }
+}

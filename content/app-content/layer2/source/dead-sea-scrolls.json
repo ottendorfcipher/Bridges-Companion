@@ -1,0 +1,10 @@
+{
+  "id": "source-dead-sea-scrolls",
+  "type": "source",
+  "label": "Dead Sea Scrolls",
+  "source": {
+    "title": "Dead Sea Scrolls",
+    "summary": "Ancient Jewish manuscripts discovered between 1947-1956 near Qumran, dating from 3rd century BC to 1st century AD. Include portions of every Old Testament book except Esther, demonstrating remarkable consistency with later Masoretic texts over 1000+ years.",
+    "url": "https://www.deadseascrolls.org.il/"
+  }
+}

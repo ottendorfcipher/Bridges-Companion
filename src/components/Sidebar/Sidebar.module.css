@@ -1,0 +1,291 @@
+/* Sidebar Component - Desktop Navigation */
+
+.sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-elevated);
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  padding-bottom: 0;
+  gap: var(--space-md);
+}
+
+/* Brand Section */
+.brand {
+  width: 100%;
+  padding: var(--space-xl) 0 var(--space-lg);
+  border: none;
+  border-bottom: 1px solid var(--color-separator);
+  margin-bottom: var(--space-lg);
+  background: none;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.brand:hover {
+  background: var(--color-surface);
+}
+
+.brand:active {
+  background: var(--color-surface-secondary);
+}
+
+.brandIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.brandIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Show dark logo in light mode, light logo in dark mode */
+.brandIcon .logoLight {
+  display: none;
+}
+
+.brandIcon .logoDark {
+  display: block;
+}
+
+.brandTitle {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-xs);
+  letter-spacing: -0.015em;
+}
+
+.brandSubtitle {
+  font-size: 14px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Navigation */
+.nav {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) var(--ease-standard);
+  color: var(--color-text-primary);
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: var(--space-xs);
+  position: relative;
+}
+
+.navItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--color-primary);
+  border-radius: 0 2px 2px 0;
+  transition: height var(--duration-fast) var(--ease-standard);
+}
+
+.navItem:hover {
+  background: var(--color-surface);
+}
+
+.navItem.active {
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.navItem.active::before {
+  height: 70%;
+}
+
+.navIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.navItem.active .navIcon {
+  color: var(--color-primary);
+}
+
+.navLabel {
+  flex: 1;
+  font-weight: 500;
+}
+
+.editIndicator {
+  width: 8px;
+  height: 8px;
+  background-color: #FF9500;
+  border-radius: 50%;
+  margin-left: var(--space-xs);
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+}
+
+/* Utility Navigation - NN/g pattern: separate utility items from primary nav */
+.utilityNav {
+  padding-top: var(--space-md);
+  margin-top: var(--space-md);
+  border-top: 1px solid var(--color-separator);
+}
+
+
+/* Admin Section */
+.adminSection {
+  padding: 0 var(--space-md);
+}
+
+.adminButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid #FF9500;
+  background: rgba(255, 149, 0, 0.1);
+  color: #FF9500;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) var(--ease-standard);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.adminButton:hover {
+  background: rgba(255, 149, 0, 0.15);
+}
+
+/* User Section */
+.userSection {
+  padding: 0 var(--space-md);
+}
+
+/* Footer */
+.footer {
+  padding: var(--space-lg) 0 var(--space-md);
+  border-top: 1px solid var(--color-separator);
+  margin-top: auto;
+}
+
+.footerText {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin: 0;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  /* Swap logos in dark mode */
+  .brandIcon .logoLight {
+    display: block;
+  }
+  
+  .brandIcon .logoDark {
+    display: none;
+  }
+  
+  .navItem:hover {
+    background: var(--color-surface-secondary);
+  }
+  
+  .navItem.active {
+    background: var(--color-primary-bg);
+    color: var(--color-primary-light);
+  }
+  
+  .navItem.active .navIcon {
+    color: var(--color-primary-light);
+  }
+  
+  .navItem.active::before {
+    background: var(--color-primary-light);
+  }
+}
+
+/* App theme toggle support (uses html.dark-theme / html.light-theme) */
+:global(html.dark-theme) .brandIcon .logoLight {
+  display: block;
+}
+
+:global(html.dark-theme) .brandIcon .logoDark {
+  display: none;
+}
+
+:global(html.light-theme) .brandIcon .logoLight {
+  display: none;
+}
+
+:global(html.light-theme) .brandIcon .logoDark {
+  display: block;
+}
+
+/* Smooth scrolling */
+.nav {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-separator) transparent;
+}
+
+.nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background-color: var(--color-separator);
+  border-radius: 3px;
+}

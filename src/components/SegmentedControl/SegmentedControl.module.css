@@ -1,0 +1,67 @@
+/**
+ * SegmentedControl Styles
+ * iOS-native segmented control for comparison toggles
+ */
+
+.segmentedControl {
+  display: inline-flex;
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  gap: 2px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto var(--space-md);
+}
+
+.segment {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  min-height: 32px;
+  
+  /* Accessibility */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.segment:hover {
+  background-color: var(--color-surface);
+}
+
+.segment:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.segment.selected {
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
+
+/* Dark mode adjustments */
+html.dark-theme .segment.selected {
+  background-color: var(--color-surface-elevated);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Tablet/Desktop: Smaller, centered */
+@media (min-width: 768px) {
+  .segmentedControl {
+    width: auto;
+    min-width: 320px;
+  }
+  
+  .segment {
+    padding: 6px 20px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,160 @@
+/**
+ * Glossary Styles - Layer 1 Reference Section
+ * Alphabetical organization with search and filtering
+ */
+
+.glossary {
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+  padding: var(--space-content-padding);
+}
+
+/* Header */
+.header {
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  line-height: calc(var(--font-line-height-title) / var(--font-size-title));
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--color-text-secondary);
+}
+
+/* Search */
+.searchContainer {
+  margin-bottom: var(--space-lg);
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--space-md);
+  font-size: var(--font-size-body);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-bg);
+}
+
+/* Alphabet Navigation */
+.alphabetNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.letterButton {
+  min-width: 40px;
+  height: 40px;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.letterButton:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-primary);
+}
+
+.letterButton.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+/* Entries List */
+.entriesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.entry {
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.entry:last-child {
+  border-bottom: none;
+}
+
+.term {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.definition {
+  font-size: var(--font-size-body);
+  line-height: calc(var(--font-line-height-body) / var(--font-size-body));
+  color: var(--color-text-secondary);
+  max-width: var(--max-reading-line-length);
+}
+
+.relatedLink {
+  margin-top: var(--space-md);
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.linkButton:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Empty State */
+.emptyState {
+  padding: var(--space-xxl);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+/* Count */
+.count {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-separator);
+  text-align: center;
+  font-size: var(--font-size-meta);
+  color: var(--color-text-tertiary);
+}
+
+/* Dark mode */
+html.dark-theme .searchInput {
+  background: var(--color-surface-elevated);
+}
+
+html.dark-theme .searchInput:focus {
+  box-shadow: 0 0 0 3px rgba(91, 156, 214, 0.2);
+}

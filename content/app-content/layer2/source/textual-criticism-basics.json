@@ -1,0 +1,10 @@
+{
+  "id": "source-textual-criticism-basics",
+  "type": "source",
+  "label": "Textual Criticism Basics",
+  "source": {
+    "title": "Introduction to New Testament Textual Criticism",
+    "summary": "Textual criticism is the scholarly discipline of comparing manuscript variants to determine the original text. The abundance of New Testament manuscripts (5,800+ Greek, plus thousands in other languages) allows scholars to identify and study variants openly. Most variants are minor (spelling, word order) and do not affect core doctrine.",
+    "url": "https://zondervanacademic.com/blog/biblical-manuscripts"
+  }
+}

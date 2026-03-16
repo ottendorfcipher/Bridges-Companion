@@ -1,0 +1,169 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Database
+*.db
+*.db-backup
+*.db.backup
+src/data/content.db
+!src/data/.gitkeep
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage
+*.lcov
+.nyc_output
+
+# Build
+build
+.vite
+.cache
+
+# TypeScript
+*.tsbuildinfo
+.tsbuildinfo
+
+# Firebase
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+
+
+# Sensitive Files
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+serviceAccountKey.json
+firebase-adminsdk*.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~.nib
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Local migration/build artifacts
+backups/
+public/content-icons/
+
+# PWA Service Worker
+service-worker.js
+service-worker.js.map
+workbox-*.js
+workbox-*.js.map
+
+# Package manager lock files (optional - uncomment if not committing)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Cost estimates and analysis
+GOOGLE_CLOUD_COST_ESTIMATE.md
+
+# Misc
+*.seed
+*.pid
+*.pid.lock
+.grunt
+lib-cov
+.lock-wscript
+build/Release
+jspm_packages/
+web_modules/
+*.tgz
+.yarn-integrity
+.eslintcache
+.stylelintcache
+.node_repl_history
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Local development
+.vercel
+.turbo
+.next/
+out/
+
+# Sentry
+.sentryclirc

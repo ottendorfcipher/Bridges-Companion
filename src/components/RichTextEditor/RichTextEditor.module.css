@@ -1,0 +1,368 @@
+/* Rich Text Editor Container */
+.editor {
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.loading {
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  background-color: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.toolbarGroup {
+  display: flex;
+  gap: 2px;
+  padding: 0 var(--space-xs);
+  border-right: 1px solid var(--color-separator);
+}
+
+/* Use slightly tighter spacing for command-style groups (undo/redo, link/remove) */
+.toolbarGroup:first-child {
+  padding-left: 0;
+}
+
+.toolbarGroup:last-child {
+  border-right: none;
+}
+
+.toolbarButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Improve touch handling on mobile */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.toolbarButton:hover:not(:disabled) {
+  background-color: rgba(0, 122, 255, 0.1);
+  border-color: var(--color-primary);
+}
+
+.toolbarButton.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.toolbarButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Link Hover Menu */
+.linkHoverMenu {
+  z-index: 10001;
+  border: 1px solid var(--color-separator);
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  padding: 10px;
+}
+
+.linkHoverMenuRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.linkHoverMenuButton,
+.linkHoverMenuButtonDanger {
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid var(--color-separator);
+  background: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.linkHoverMenuButton:hover {
+  border-color: var(--color-primary);
+  background: rgba(0, 122, 255, 0.10);
+}
+
+.linkHoverMenuButtonDanger {
+  border-color: rgba(255, 59, 48, 0.35);
+  background: rgba(255, 59, 48, 0.08);
+}
+
+.linkHoverMenuButtonDanger:hover {
+  border-color: rgba(255, 59, 48, 0.55);
+  background: rgba(255, 59, 48, 0.14);
+}
+
+.linkHoverMenuHref {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Link Input */
+.linkInput {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background-color: var(--color-surface-elevated);
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.linkInput input {
+  flex: 1;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+
+.linkInput input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.linkButton {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.linkButton:hover {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+/* Editor Content */
+.content {
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+.editorContent {
+  outline: none;
+}
+
+/* Editor content styles */
+.content :global(.ProseMirror) {
+  outline: none;
+  min-height: 200px;
+}
+
+.content :global(.ProseMirror) h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.019em;
+  margin: var(--space-lg) 0 var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.content :global(.ProseMirror) h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.016em;
+  margin: var(--space-md) 0 var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.content :global(.ProseMirror) h4 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  margin: var(--space-md) 0 var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.content :global(.ProseMirror) h5 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.009em;
+  margin: var(--space-sm) 0 var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.content :global(.ProseMirror) h6 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.006em;
+  margin: var(--space-sm) 0 var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.content :global(.ProseMirror) p {
+  margin: var(--space-sm) 0;
+  font-size: 17px;
+  line-height: 1.294; /* 22/17 ratio */
+  letter-spacing: -0.003em;
+  color: var(--color-text-primary);
+}
+
+.content :global(.ProseMirror) ul,
+.content :global(.ProseMirror) ol {
+  padding-left: var(--space-xl);
+  margin: var(--space-sm) 0;
+}
+
+.content :global(.ProseMirror) li {
+  margin: var(--space-xs) 0;
+}
+
+.content :global(.ProseMirror) a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.content :global(.ProseMirror) strong {
+  font-weight: 700;
+}
+
+.content :global(.ProseMirror) em {
+  font-style: italic;
+}
+
+.content :global(.ProseMirror) u {
+  text-decoration: underline;
+}
+
+.content :global(.ProseMirror) s {
+  text-decoration: line-through;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-surface-secondary);
+  border-top: 1px solid var(--color-separator);
+}
+
+.cancelButton,
+.saveButton {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.cancelButton {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-separator);
+}
+
+.cancelButton:hover:not(:disabled) {
+  background-color: var(--color-separator);
+}
+
+.saveButton {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.saveButton:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.cancelButton:disabled,
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .editor {
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .toolbar {
+    gap: 4px;
+    padding: var(--space-xs);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .toolbarGroup {
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  .toolbarButton {
+    /* Minimum iOS touch target */
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .content {
+    padding: var(--space-md);
+    flex: 1;
+    max-height: 400px;
+  }
+  
+  .actions {
+    padding: var(--space-md);
+  }
+  
+  .cancelButton,
+  .saveButton {
+    flex: 1;
+    min-height: 44px;
+    font-size: 16px;
+  }
+}

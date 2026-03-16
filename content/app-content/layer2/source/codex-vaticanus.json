@@ -1,0 +1,10 @@
+{
+  "id": "source-codex-vaticanus",
+  "type": "source",
+  "label": "Codex Vaticanus",
+  "source": {
+    "title": "Codex Vaticanus",
+    "summary": "One of the most important Greek manuscripts of the Bible, dating to approximately 300-350 AD. Contains most of the Old Testament (Septuagint) and the New Testament. Housed in the Vatican Library and considered one of the best representatives of the Alexandrian text-type.",
+    "url": "https://digi.vatlib.it/view/MSS_Vat.gr.1209"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "source-p52-john-rylands",
+  "type": "source",
+  "label": "P52 (John Rylands Fragment)",
+  "source": {
+    "title": "Rylands Library Papyrus P52",
+    "summary": "The earliest known fragment of the New Testament, containing portions of John 18:31-33, 37-38. Dated to approximately 125-150 AD, it demonstrates the early circulation of John's Gospel within decades of its composition.",
+    "url": "https://www.bl.uk/collection-items/rylands-library-papyrus-p52"
+  }
+}

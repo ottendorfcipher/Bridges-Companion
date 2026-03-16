@@ -1,0 +1,140 @@
+/* Reference drawer (Layer 2) */
+
+.referenceDrawer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.empty {
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.4;
+  padding: var(--space-sm) 0;
+}
+
+/* Inline tabs (scrollable on small screens) */
+.tabBar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  display: flex;
+  gap: var(--space-md);
+  padding: 0;
+  margin-bottom: var(--space-sm);
+
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-separator);
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabButton {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+
+  min-height: 44px;
+  padding: 10px 0;
+
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tabButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.active {
+  background: transparent;
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.panelBody {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-text-primary);
+}
+
+.panelBody h1,
+.panelBody h2,
+.panelBody h3 {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.panelBody p {
+  margin-bottom: var(--space-md);
+}
+
+.panelBody ul,
+.panelBody ol {
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-lg);
+}
+
+.panelBody a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.callouts {
+  margin-top: var(--space-md);
+}
+
+.links {
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-separator);
+}
+
+.linksTitle {
+  font-size: 16px;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.linksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.linksItem {
+  margin: 0;
+}
+
+.linksAnchor {
+  display: inline-block;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-separator);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.linksAnchor:hover {
+  background: var(--color-surface-secondary);
+}

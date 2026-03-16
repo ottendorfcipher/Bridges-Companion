@@ -1,0 +1,10 @@
+{
+  "id": "source-codex-sinaiticus",
+  "type": "source",
+  "label": "Codex Sinaiticus",
+  "source": {
+    "title": "Codex Sinaiticus",
+    "summary": "One of the oldest complete manuscripts of the Bible, written in Greek around 350 AD. Contains the entire New Testament and substantial portions of the Old Testament. Now digitized and available for public study.",
+    "url": "https://www.codexsinaiticus.org/"
+  }
+}

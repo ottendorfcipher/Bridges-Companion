@@ -1,0 +1,10 @@
+{
+  "id": "source-early-nt-papyri",
+  "type": "source",
+  "label": "Early New Testament Papyri",
+  "source": {
+    "title": "Early New Testament Papyri Collection",
+    "summary": "Over 130 papyrus manuscripts of the New Testament, many dating to the 2nd and 3rd centuries AD. These early fragments predate the major codices and provide crucial evidence for the reliability of New Testament transmission. The Center for the Study of New Testament Manuscripts (CSNTM) has digitized thousands of manuscripts for public access.",
+    "url": "https://www.csntm.org/"
+  }
+}

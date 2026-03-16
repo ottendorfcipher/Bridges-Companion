@@ -1,0 +1,521 @@
+/**
+ * Global styles and CSS custom properties
+ * Based on Apple Human Interface Guidelines
+ */
+
+:root {
+  /* Enhanced Color Palette - Light Mode */
+  /* Primary - Bridge Blue */
+  --color-primary: #2F7DE1;
+  --color-primary-dark: #2F7DE1;
+  --color-primary-light: #5FA6F2;
+  --color-primary-bg: #E3F2FD;
+  
+  /* Accent - Warm Sand */
+  --color-accent: #E6C98A;
+  --color-accent-light: #E6C98A;
+  --color-accent-bg: #FFF3F0;
+  
+  /* Layer 1 Sensitivity Indicators - Cognitive Load Theory */
+  /* From core_changes_ui_12_28_25.pdf - Contextual Relevance (Yerkes-Dodson Law) */
+  --color-sensitivity-low: #30B0C7; /* Teal - Invites open dialogue */
+  --color-sensitivity-medium: #FF9500; /* Orange - Requires nuance */
+  --color-sensitivity-high: #AF52DE; /* Purple - Deep theological divergence */
+  --color-sensitivity-low-bg: #E6F7FA;
+  --color-sensitivity-medium-bg: #FFF5E6;
+  --color-sensitivity-high-bg: #F5EBFF;
+  --color-sensitivity-low-border: rgba(48, 176, 199, 0.3);
+  --color-sensitivity-medium-border: rgba(255, 149, 0, 0.3);
+  --color-sensitivity-high-border: rgba(175, 82, 222, 0.3);
+  
+  /* Eustress - Orange (active recall, focus, high-priority) */
+  --color-eustress: #FF9500;
+  --color-eustress-light: #FFB340;
+  --color-eustress-bg: #FFF5E6;
+  
+  /* Semantic Colors - High Contrast */
+  --color-success: #1B7043;
+  --color-warning: #C77800;
+  --color-error: #B71C1C;
+  --color-info: #0A4C95;
+  
+  /* Neutrals - Light Mode */
+  --color-background: #FAFAF8;
+  --color-surface: #F5F4F2;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-secondary: #ECEAE6;
+  --color-text-primary: #2B2F36;
+  --color-text-secondary: #494540;
+  --color-text-tertiary: #6B6560;
+  --color-separator: #D4D2CE;
+  
+  /* Scripture Source Colors - Culturally Appropriate */
+  --color-scripture-bible: #1B7043;
+  --color-scripture-quran: #0A4C95;
+  --color-scripture-hadith: #B85D43;
+  --color-scripture-tafsir: #5E5CE6;
+  --color-scripture-other: #6B6560;
+  
+  /* Typography Scale - Layer 1 Core Changes (Apple HIG) */
+  /* Page Title (Type A-F): 28pt / 34pt Dynamic Type Large Title - Bold */
+  --font-size-title: 28px;
+  --font-line-height-title: 34px;
+  /* Section Header (Chunk Labels): 22pt / 28pt Title 2 - Semibold */
+  --font-size-heading: 22px;
+  --font-line-height-heading: 28px;
+  /* Body Text: 17pt / 22pt Body - Regular */
+  --font-size-body: 17px;
+  --font-line-height-body: 22px;
+  /* Meta/Tags: 13pt Footnote - Gray Secondary */
+  --font-size-meta: 13px;
+  /* Max reading line length: 60 characters (~350px) */
+  --max-reading-line-length: 350px;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  
+  --space-tab-height: 49px;
+  --space-list-item-height: 44px; /* Minimum touch target per Apple HIG */
+  --space-accordion-padding: 16px;
+  --space-content-padding: 20px;
+  
+  /* Sizing */
+  --size-tab-icon: 28px;
+  --size-button-height: 44px; /* Apple HIG minimum touch target */
+  --size-icon-small: 16px;
+  --size-icon-medium: 24px;
+  --size-icon-large: 32px;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  
+  /* Animation */
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+  
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 400ms;
+
+  /* Responsive Breakpoints */
+  --breakpoint-mobile: 320px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-desktop-lg: 1440px;
+
+  /* Layout Constraints */
+  --max-content-width: 1200px;
+  --max-reading-width: 720px;
+  --sidebar-width: 280px;
+}
+
+/* Dark Mode */
+html.dark-theme {
+  --color-primary: #2F7DE1;
+  --color-primary-dark: #2F7DE1;
+  --color-primary-light: #5FA6F2;
+  --color-primary-bg: #1A2F42;
+  
+  --color-accent: #E6C98A;
+  --color-accent-light: #E6C98A;
+  --color-accent-bg: #2D1F1C;
+  
+  /* Sensitivity indicators adjusted for dark mode */
+  --color-sensitivity-low: #5CCDE0;
+  --color-sensitivity-medium: #FFB340;
+  --color-sensitivity-high: #C77EF0;
+  --color-sensitivity-low-bg: #1A3840;
+  --color-sensitivity-medium-bg: #3D2A1A;
+  --color-sensitivity-high-bg: #2E1F3D;
+  --color-sensitivity-low-border: rgba(92, 205, 224, 0.3);
+  --color-sensitivity-medium-border: rgba(255, 179, 64, 0.3);
+  --color-sensitivity-high-border: rgba(199, 126, 240, 0.3);
+  
+  --color-background: #0B1020;
+  --color-surface: #1A1816;
+  --color-surface-elevated: #252321;
+  --color-surface-secondary: #2D2B28;
+  --color-text-primary: #F5F7FA;
+  --color-text-secondary: #C4C1BC;
+  --color-text-tertiary: #8B8782;
+  --color-separator: #3A3835;
+  
+  --color-success: #66BB6A;
+  --color-warning: #FFA726;
+  --color-error: #EF5350;
+}
+
+/* System preference dark mode (only if not explicitly set to light) */
+@media (prefers-color-scheme: dark) {
+  html:not(.light-theme) {
+    --color-primary: #2F7DE1;
+    --color-primary-dark: #2F7DE1;
+    --color-primary-light: #5FA6F2;
+    --color-primary-bg: #1A2F42;
+    
+    --color-accent: #E6C98A;
+    --color-accent-light: #E6C98A;
+    --color-accent-bg: #2D1F1C;
+    
+    /* Sensitivity indicators adjusted for dark mode */
+    --color-sensitivity-low: #5CCDE0;
+    --color-sensitivity-medium: #FFB340;
+    --color-sensitivity-high: #C77EF0;
+    --color-sensitivity-low-bg: #1A3840;
+    --color-sensitivity-medium-bg: #3D2A1A;
+    --color-sensitivity-high-bg: #2E1F3D;
+    --color-sensitivity-low-border: rgba(92, 205, 224, 0.3);
+    --color-sensitivity-medium-border: rgba(255, 179, 64, 0.3);
+    --color-sensitivity-high-border: rgba(199, 126, 240, 0.3);
+    
+    --color-background: #0B1020;
+    --color-surface: #1A1816;
+    --color-surface-elevated: #252321;
+    --color-surface-secondary: #2D2B28;
+    --color-text-primary: #F5F7FA;
+    --color-text-secondary: #C4C1BC;
+    --color-text-tertiary: #8B8782;
+    --color-separator: #3A3835;
+    
+    --color-success: #66BB6A;
+    --color-warning: #FFA726;
+    --color-error: #EF5350;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+body {
+  /* San Francisco font stack (iOS) for user familiarity and legibility */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  /* Layer 1 Typography: 17pt / 22pt Body Text */
+  font-size: var(--font-size-body);
+  line-height: calc(var(--font-line-height-body) / var(--font-size-body));
+  letter-spacing: -0.003em;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Layer 1 Readability Constraint: Max line length 60 characters (~350px) */
+p, li, .reading-content {
+  max-width: var(--max-reading-line-length);
+}
+
+/* Meta/Tags: 13pt Footnote - Gray Secondary */
+.meta-text, .tag-text, small {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-secondary);
+}
+
+/* Dynamic Type Support - Must not break at 200% font size */
+@media (min-width: 768px) {
+  :root {
+    --font-size-title: 32px;
+    --font-line-height-title: 38px;
+    --font-size-heading: 24px;
+    --font-line-height-heading: 30px;
+  }
+}
+
+/* Typography - Enhanced for Reading */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin-top: 0;
+}
+
+/* Layer 1 Typography Scale - Apple HIG Dynamic Type */
+
+/* Page Title (Type A-F): 28pt / 34pt Large Title - Bold */
+/* Purpose: Immediate orientation */
+h1 {
+  font-size: var(--font-size-title);
+  font-weight: 700; /* Bold */
+  letter-spacing: -0.022em;
+  margin-bottom: var(--space-lg);
+  line-height: calc(var(--font-line-height-title) / var(--font-size-title));
+}
+
+/* Section Header (Chunk Labels): 22pt / 28pt Title 2 - Semibold */
+/* Purpose: Delimits chunks of information per Miller's Law */
+h2 {
+  font-size: var(--font-size-heading);
+  font-weight: 600; /* Semibold */
+  letter-spacing: -0.019em;
+  margin-bottom: var(--space-md);
+  line-height: calc(var(--font-line-height-heading) / var(--font-size-heading));
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.016em;
+  margin-bottom: var(--space-md);
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  margin-bottom: var(--space-sm);
+  line-height: 1.3;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.009em;
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+h6 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.006em;
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+/* Responsive Typography */
+@media (min-width: 768px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 22px; }
+  h4 { font-size: 20px; }
+}
+
+@media (min-width: 1024px) {
+  h1 { font-size: 42px; }
+  h2 { font-size: 32px; }
+  h3 { font-size: 26px; }
+  h4 { font-size: 22px; }
+}
+
+/* Body Text: 17pt / 22pt - Regular. Max 60 chars (~350px) */
+p {
+  font-size: 17px;
+  margin-bottom: var(--space-md);
+  max-width: 60ch; /* ~350px at 17pt */
+  line-height: 1.294; /* 22/17 */
+}
+
+@media (min-width: 768px) {
+  p {
+    line-height: 1.294;
+  }
+}
+
+/* Meta/Tags: 13pt - Gray Secondary */
+.meta-text, .tag-text {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.385; /* ~18/13 */
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+  margin-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+li {
+  margin-bottom: var(--space-sm);
+}
+
+/* Strong and Emphasis */
+strong {
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 100%;
+  padding: 0 var(--space-content-padding);
+  padding-bottom: calc(var(--space-tab-height) + env(safe-area-inset-bottom) + var(--space-md));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Loading State */
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 0%,
+    var(--color-surface-secondary) 50%,
+    var(--color-surface) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Safe Area Insets */
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Responsive Layout Utilities */
+.hide-on-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: block;
+  }
+  
+  .hide-on-tablet {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hide-on-desktop {
+    display: none;
+  }
+  
+  .hide-on-tablet {
+    display: block;
+  }
+}
+
+/* App Shell Layout */
+.app {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.app-sidebar {
+  display: none;
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  padding-top: 56px; /* Height of mobile header */
+  padding-bottom: calc(var(--space-tab-height) + env(safe-area-inset-bottom));
+}
+
+/* On mobile/tablet, add top padding for sticky header */
+@media (max-width: 1023px) {
+  .app-main {
+    padding-top: calc(56px + env(safe-area-inset-top));
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-sidebar {
+    display: block;
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    background-color: var(--color-surface-elevated);
+    border-right: 1px solid var(--color-separator);
+    overflow-y: auto;
+    padding: var(--space-lg);
+  }
+  
+  .app-main {
+    padding-top: 0;
+    padding-bottom: var(--space-lg);
+  }
+}
+
+/* Responsive Container */
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--max-content-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

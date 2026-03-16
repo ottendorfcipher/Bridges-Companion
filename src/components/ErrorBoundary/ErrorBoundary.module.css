@@ -1,0 +1,142 @@
+/* Error Boundary Styles - Following Apple HIG */
+
+.errorBoundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-content-padding);
+  background: var(--color-background);
+}
+
+.errorContent {
+  max-width: 500px;
+  text-align: center;
+}
+
+.errorIcon {
+  font-size: 64px;
+  margin-bottom: var(--space-lg);
+}
+
+.errorTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.errorMessage {
+  font-size: 17px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+  line-height: 1.5;
+}
+
+.errorDetails {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
+  text-align: left;
+}
+
+.errorDetails summary {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: var(--space-sm);
+  user-select: none;
+}
+
+.errorDetails summary:hover {
+  color: var(--color-primary);
+}
+
+.errorStack {
+  font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--color-error);
+  background: var(--color-background);
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  margin-top: var(--space-sm);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.errorActions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.resetButton,
+.reloadButton {
+  min-height: 44px;
+  padding: 0 var(--space-lg);
+  border-radius: var(--radius-sm);
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all var(--duration-fast) var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.resetButton {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.resetButton:active {
+  transform: scale(0.98);
+}
+
+.reloadButton {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.reloadButton:active {
+  background: var(--color-surface-secondary);
+  transform: scale(0.98);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .errorBoundary {
+  }
+
+  .errorTitle {
+  }
+
+  .errorMessage {
+  }
+
+  .errorDetails {
+  }
+
+  .errorDetails summary {
+  }
+
+  .errorDetails summary:hover {
+    color: var(--color-primary-light);
+  }
+
+  .errorStack {
+  }
+
+  .resetButton {
+    background: var(--color-primary-light);
+  }
+
+  .reloadButton {
+  }
+
+  .reloadButton:active {
+  }
+}

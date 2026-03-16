@@ -1,0 +1,313 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function securityDocPath() {
+      return /databases/$(database)/documents/appConfig/securityConfig;
+    }
+
+    function hasSecurityDoc() {
+      return exists(securityDocPath());
+    }
+
+    function getSecurityData() {
+      return hasSecurityDoc() ? get(securityDocPath()).data : null;
+    }
+
+    function isLockdownEnabled() {
+      return hasSecurityDoc() && getSecurityData().lockdownEnabled == true;
+    }
+
+    function isWhitelistedAuth() {
+      // Firestore Rules doesn't support imperative if-statements inside functions.
+      // Express the gate as a pure boolean expression.
+      return !isLockdownEnabled() ||
+        isAdmin() ||
+        (
+          hasSecurityDoc() && (
+            (getSecurityData().allowlistUids != null && request.auth.uid in getSecurityData().allowlistUids) ||
+            (getSecurityData().allowlistEmails != null && request.auth.token.email != null && request.auth.token.email in getSecurityData().allowlistEmails)
+          )
+        );
+    }
+
+    function userDocPath() {
+      return /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    function hasUserDoc() {
+      return isAuthenticated() && exists(userDocPath());
+    }
+
+    function getUserData() {
+      return hasUserDoc() ? get(userDocPath()).data : null;
+    }
+
+    function isAdmin() {
+      // Treat role=admin as authoritative; only block if explicitly disabled.
+      return hasUserDoc() &&
+             getUserData().role == 'admin' &&
+             getUserData().status != 'disabled';
+    }
+
+    function isEnabledUser() {
+      return hasUserDoc() &&
+             getUserData().status != 'disabled' &&
+             isWhitelistedAuth();
+    }
+
+    function hasPermission(permission) {
+      return isAdmin() || (
+        hasUserDoc() &&
+        getUserData().status != 'disabled' &&
+        isWhitelistedAuth() &&
+        getUserData().permissions != null &&
+        (permission in getUserData().permissions || 'admin.full_access' in getUserData().permissions)
+      );
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isOwnerAdminAccount(userId) {
+      return hasSecurityDoc() && getSecurityData().ownerUid != null && getSecurityData().ownerUid == userId;
+    }
+    
+    // User profiles collection
+    match /users/{userId} {
+      // Users can read their own profile (even if disabled, so the client can show a clear message).
+      allow read: if isOwner(userId);
+
+      // New users can create their own profile on first sign-in.
+      // Must be 'user' role with default permissions.
+      // If lockdown is enabled, the auth'd user must be allowlisted.
+      allow create: if isOwner(userId) &&
+                       isWhitelistedAuth() &&
+                       request.resource.data.role == 'user' &&
+                       request.resource.data.status == 'active';
+
+      // Users can update their own profile (limited fields) only while active and allowed.
+      allow update: if isOwner(userId) &&
+                       isEnabledUser() &&
+                       !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'permissions', 'status', 'uid']);
+
+      // Admins and users with 'users.view' can read all profiles
+      allow read: if hasPermission('users.view');
+
+      // Admins and users with 'users.edit' can create/update/delete profiles,
+      // but no one may disable themselves or disable the owner admin account.
+      allow create: if hasPermission('users.edit');
+      allow update: if hasPermission('users.edit') &&
+                       !(userId == request.auth.uid && request.resource.data.status == 'disabled') &&
+                       !(isOwnerAdminAccount(userId) && request.resource.data.status == 'disabled') &&
+                       !(isOwnerAdminAccount(userId) && request.resource.data.role != 'admin');
+      allow delete: if hasPermission('users.edit') &&
+                       !(isOwnerAdminAccount(userId));
+    }
+    
+    // Content management (for future content editing features)
+    match /content/{contentId} {
+      // Enabled/allowed users can read content
+      allow read: if isEnabledUser();
+      
+      // Only users with content.edit can modify
+      allow create, update: if hasPermission('content.edit');
+      
+      // Only users with content.delete can delete
+      allow delete: if hasPermission('content.delete');
+    }
+    
+    // Analytics/logs (optional - for tracking usage)
+    match /analytics/{document} {
+      // Only admins can read analytics
+      allow read: if isAdmin();
+      
+      // System can write (but not users directly)
+      allow write: if false;
+    }
+    
+    // Content edits (WYSIWYG editing)
+    match /contentEdits/{editId} {
+      // Enabled/allowed users can read content edits (to display edited content)
+      allow read: if isEnabledUser();
+      
+      // Users with content.edit permission can create/update edits
+      allow create, update: if hasPermission('content.edit');
+      
+      // Users with content.delete can archive edits (revert to original)
+      allow delete: if hasPermission('content.delete');
+    }
+
+    // CMS catalog overlays (version-scoped)
+    // NOTE: "Hard-delete" is implemented as a tombstone field `isDeleted: true`.
+    // Only users with content.delete can toggle `isDeleted`.
+    match /contentCategories/{docId} {
+      allow read: if isEnabledUser();
+
+      // Editors can create overlays as long as they are not tombstones.
+      // Tombstone creates (isDeleted=true) require content.delete.
+      allow create: if hasPermission('content.delete') || (hasPermission('content.edit') && request.resource.data.isDeleted != true);
+
+      allow update: if hasPermission('content.delete') || (
+        hasPermission('content.edit') &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isDeleted'])
+      );
+
+      allow delete: if hasPermission('content.delete');
+    }
+
+    match /contentModules/{docId} {
+      allow read: if isEnabledUser();
+
+      // Editors can create overlays as long as they are not tombstones.
+      // Tombstone creates (isDeleted=true) require content.delete.
+      allow create: if hasPermission('content.delete') || (hasPermission('content.edit') && request.resource.data.isDeleted != true);
+
+      allow update: if hasPermission('content.delete') || (
+        hasPermission('content.edit') &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isDeleted'])
+      );
+
+      allow delete: if hasPermission('content.delete');
+    }
+
+    // Firestore-created pages (accordion items) in CMS (future phases)
+    match /contentPages/{docId} {
+      allow read: if isEnabledUser();
+
+      // Editors can create overlays as long as they are not tombstones.
+      // Tombstone creates (isDeleted=true) require content.delete.
+      allow create: if hasPermission('content.delete') || (hasPermission('content.edit') && request.resource.data.isDeleted != true);
+
+      allow update: if hasPermission('content.delete') || (
+        hasPermission('content.edit') &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isDeleted'])
+      );
+
+      allow delete: if hasPermission('content.delete');
+    }
+
+    // =====================================================================
+    // Imported base content (SQLite -> Firestore cutover)
+    // Read-only from client; written by admin scripts (Admin SDK bypasses rules).
+    // =====================================================================
+    match /sqliteCategories/{docId} {
+      allow read: if isEnabledUser();
+      allow write: if false;
+    }
+
+    match /sqliteModules/{docId} {
+      allow read: if isEnabledUser();
+      allow write: if false;
+    }
+
+    match /sqlitePages/{docId} {
+      allow read: if isEnabledUser();
+      allow write: if false;
+    }
+
+    match /sqliteScriptures/{docId} {
+      allow read: if isEnabledUser();
+      allow write: if false;
+    }
+
+    match /sqlitePageScriptures/{docId} {
+      allow read: if isEnabledUser();
+      allow write: if false;
+    }
+
+    match /sqliteExternalLinks/{docId} {
+      allow read: if isEnabledUser();
+      allow write: if false;
+    }
+
+    // Import run manifests (admin only)
+    match /sqliteImportRuns/{docId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // Persistent icon library metadata
+    // Only admins can create/upload new icons (paired with Storage rules).
+    match /contentIcons/{iconId} {
+      allow read: if isEnabledUser();
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Activity logs (track user edits and actions)
+    match /activityLogs/{logId} {
+      // Admins and users with users.view can read activity logs
+      allow read: if hasPermission('users.view');
+      
+      // Users with content.edit can create logs (system creates these automatically)
+      allow create: if hasPermission('content.edit');
+      
+      // No one can update or delete logs (immutable audit trail)
+      allow update, delete: if false;
+    }
+    
+    // Version management
+    match /versions/{versionId} {
+      // Enabled/allowed users can read versions
+      allow read: if isEnabledUser();
+      
+      // Only admins can create and update versions
+      allow create, update: if hasPermission('admin.full_access');
+      
+      // No one can delete versions (audit trail)
+      allow delete: if false;
+    }
+    
+    // App configuration (version control)
+    // Security config is readable by any authenticated user (needed for login gating)
+    // and writable by admins.
+    match /appConfig/securityConfig {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // App configuration (version control)
+    match /appConfig/{configId} {
+      // Enabled/allowed users can read config
+      allow read: if isEnabledUser();
+      
+      // Only admins can update config
+      allow write: if hasPermission('admin.full_access');
+    }
+
+    // Assigned tags/groups + assigned sections (admin-managed, user-readable)
+    // Data model:
+    // - /assignedTags/{tagId}
+    // - /assignedTags/{tagId}/sections/{sectionId}
+    match /assignedTags/{tagId} {
+      // Admins can manage tags.
+      allow create, update, delete: if hasPermission('admin.full_access');
+
+      // Members (or admins) can read tag metadata (only if enabled/allowed).
+      allow read: if isAdmin() || (
+        isEnabledUser() &&
+        resource.data.memberUserIds != null &&
+        (request.auth.uid in resource.data.memberUserIds)
+      );
+
+      match /sections/{sectionId} {
+        // Admins can manage tag assignments.
+        allow create, update, delete: if hasPermission('admin.full_access');
+
+        // Users can read assigned sections only if they are a member of the parent tag (and enabled/allowed).
+        allow read: if isAdmin() || (
+          isEnabledUser() &&
+          get(/databases/$(database)/documents/assignedTags/$(tagId)).data.memberUserIds != null &&
+          (request.auth.uid in get(/databases/$(database)/documents/assignedTags/$(tagId)).data.memberUserIds)
+        );
+      }
+    }
+  }
+}

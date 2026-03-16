@@ -1,0 +1,75 @@
+/**
+ * Breadcrumb Navigation Styles - Layer 1
+ * Section > Module > Page (desktop)
+ * Module > Page (mobile)
+ */
+
+.breadcrumb {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-separator);
+  margin-bottom: var(--space-lg);
+}
+
+.breadcrumbList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-tertiary);
+  margin: 0 var(--space-xs);
+}
+
+.breadcrumbLink {
+  background: none;
+  border: none;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 15px;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.breadcrumbLink:hover {
+  background-color: var(--color-primary-bg);
+}
+
+.breadcrumbLink:active {
+  background-color: var(--color-primary-bg);
+  opacity: 0.7;
+}
+
+.breadcrumbCurrent {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Layer 1: Hide category on mobile (Module > Page format) */
+@media (max-width: 767px) {
+  .hideOnMobile {
+    display: none;
+  }
+}
+
+/* Dark mode */
+html.dark-theme .breadcrumbLink:hover {
+  background-color: var(--color-surface-secondary);
+}

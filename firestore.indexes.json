@@ -1,0 +1,148 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "contentEdits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "pageId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "versionId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentEdits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "pageId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "versionKey", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentEdits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentEdits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionKey", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentEdits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "moduleSlug", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentEdits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "moduleSlug", "order": "ASCENDING" },
+        { "fieldPath": "versionId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentEdits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "moduleSlug", "order": "ASCENDING" },
+        { "fieldPath": "versionKey", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentCategories",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentCategories",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionKey", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentModules",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentModules",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionKey", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentPages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "contentPages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "versionKey", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "versions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "epochId", "order": "ASCENDING" },
+        { "fieldPath": "versionId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "versions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "epochId", "order": "ASCENDING" },
+        { "fieldPath": "versionId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "activityLogs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "activityLogs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "resourceId", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
