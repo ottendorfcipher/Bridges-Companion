@@ -1,0 +1,82 @@
+# Auto detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Source code
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# SQL files
+*.sql text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+
+# Config files
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.editorconfig text eol=lf
+.npmrc text eol=lf
+.prettierrc text eol=lf
+.eslintrc text eol=lf
+tsconfig.json text eol=lf
+package.json text eol=lf
+
+# Documentation
+*.txt text eol=lf
+LICENSE text eol=lf
+README text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.otf binary
+*.pdf binary
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.7z binary
+*.rar binary
+
+# Exclude from export
+.github export-ignore
+.vscode export-ignore
+.idea export-ignore
+.DS_Store export-ignore
+*.log export-ignore
+*.tmp export-ignore
+node_modules export-ignore
+dist export-ignore
+build export-ignore
+coverage export-ignore
+
+# GitHub Linguist overrides
+*.sql linguist-detectable=true
+*.md linguist-detectable=false
+docs/** linguist-documentation
+*.css linguist-vendored=false
