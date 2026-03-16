@@ -43,6 +43,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const clearError = () => setError(null);
 
+  // Dev mode bypass - create a mock admin user for local development
+  const isDevModeBypass = import.meta.env.DEV && import.meta.env.VITE_DEV_MODE_BYPASS_AUTH === 'true';
+
+  const createMockDevUser = (): User => ({
+    uid: 'dev-user-local',
+    email: 'dev@localhost',
+    displayName: 'Dev User',
+    photoURL: null,
+    role: 'admin',
+    permissions: ['read', 'write', 'delete', 'admin'],
+    status: 'active',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    lastLoginAt: new Date().toISOString(),
+  });
+
   useEffect(() => {
     userRef.current = user;
   }, [user]);
@@ -65,6 +81,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   useEffect(() => {
+    // DEV MODE BYPASS: Skip Firebase auth entirely in development
+    if (isDevModeBypass) {
+      console.log('🔓 Dev mode: Bypassing Firebase authentication');
+      setUser(createMockDevUser());
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
     // Check if Firebase is configured
     if (configError) {
       setError(configError);
@@ -265,7 +290,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       stopRealtimeGuards();
       unsubscribeAuth();
     };
-  }, []);
+  }, [isDevModeBypass]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const value: AuthContextValue = {
     user,

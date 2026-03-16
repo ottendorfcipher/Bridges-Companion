@@ -17,6 +17,9 @@ export function LoginScreen() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const isOnline = useOnline();
+  
+  // Check if dev mode bypass is enabled
+  const isDevMode = import.meta.env.DEV && import.meta.env.VITE_DEV_MODE_BYPASS_AUTH === 'true';
 
   const displayError = authError || error;
 
