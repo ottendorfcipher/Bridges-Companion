@@ -109,7 +109,7 @@ export function Home({ onNavigate }: HomeProps) {
         </div>
         <h1 className={styles.heroTitle}>Bridge Companion</h1>
         <p className={styles.heroSubtitle}>
-          Your guide for faith dialogue and understanding
+          Your educational content management platform
         </p>
       </div>
       <div className={styles.quickStart}>
@@ -136,7 +136,7 @@ export function Home({ onNavigate }: HomeProps) {
         </div>
         <h1 className={styles.heroTitle}>Bridge Companion</h1>
         <p className={styles.heroSubtitle}>
-          Your guide for faith dialogue and understanding
+          Your educational content management platform
         </p>
       </div>
 
