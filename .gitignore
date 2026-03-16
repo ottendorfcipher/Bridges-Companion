@@ -29,7 +29,12 @@ dist-ssr
 *.db-backup
 *.db.backup
 src/data/content.db
-src/data/seed-original-backup.sql
+
+# SQL files - exclude all seed data and migrations with content
+src/data/seed*.sql
+src/data/migrations/*.sql
+src/data/schema-v2.sql
+
 !src/data/.gitkeep
 
 # Environment Variables
