@@ -24,7 +24,7 @@ Your Firebase project is configured and Firestore rules are deployed! Now you ne
 
 ## Step 2: Create Admin User in Firestore
 
-1. Go to Firebase Console: https://console.firebase.google.com/project/g-bridges/firestore
+1. Go to Firebase Console: https://console.firebase.google.com/project/YOUR_PROJECT_ID/firestore
 
 2. Click "Start collection" (or go to existing `users` collection)
 
@@ -97,4 +97,4 @@ Your Firebase project is configured and Firestore rules are deployed! Now you ne
 
 Full documentation: `/docs/ADMIN_SETUP.md`
 
-Firebase Console: https://console.firebase.google.com/project/g-bridges
+Firebase Console: https://console.firebase.google.com/project/YOUR_PROJECT_ID

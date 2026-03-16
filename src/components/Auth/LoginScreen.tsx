@@ -61,7 +61,7 @@ export function LoginScreen() {
       
       // Add helpful context for common mobile errors
       if (authError.code === 'auth/unauthorized-domain') {
-        errorMessage = 'This domain is not authorized. Please add g-bridges.web.app to Firebase Console > Authentication > Settings > Authorized domains.';
+        errorMessage = 'This domain is not authorized. Please add your domain to Firebase Console > Authentication > Settings > Authorized domains.';
       } else if (authError.code === 'auth/popup-blocked') {
         errorMessage = 'Sign-in popup was blocked. Please allow popups for this site or try again.';
       }

@@ -14,7 +14,7 @@
  * Usage:
  *   node scripts/prune-firestore-sqlite-base.js \
  *     --db public/content.db \
- *     --project g-bridges \
+ *     --project YOUR_PROJECT_ID \
  *     [--dry-run]
  */
 
